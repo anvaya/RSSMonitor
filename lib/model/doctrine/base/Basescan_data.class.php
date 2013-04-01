@@ -21,35 +21,38 @@ Doctrine_Manager::getInstance()->bindComponent('scan_data', 'doctrine');
  * @property nvarchar $release_date
  * @property boolean $processed
  * @property scan_source $scan_source
+ * @property Doctrine_Collection $scan_song
  * 
- * @method integer     getId()             Returns the current record's "id" value
- * @method integer     getScanSourceId()   Returns the current record's "scan_source_id" value
- * @method nvarchar    getSongName()       Returns the current record's "song_name" value
- * @method nvarchar    getArtistName()     Returns the current record's "artist_name" value
- * @method nvarchar    getAlbum()          Returns the current record's "album" value
- * @method nvarchar    getCountry()        Returns the current record's "country" value
- * @method nvarchar    getGenre()          Returns the current record's "genre" value
- * @method varchar     getPictureFile()    Returns the current record's "picture_file" value
- * @method varchar     getYoutubeLink()    Returns the current record's "youtube_link" value
- * @method nvarchar    getRecordCompany()  Returns the current record's "record_company" value
- * @method nvarchar    getCopyright()      Returns the current record's "copyright" value
- * @method nvarchar    getReleaseDate()    Returns the current record's "release_date" value
- * @method boolean     getProcessed()      Returns the current record's "processed" value
- * @method scan_source getScanSource()     Returns the current record's "scan_source" value
- * @method scan_data   setId()             Sets the current record's "id" value
- * @method scan_data   setScanSourceId()   Sets the current record's "scan_source_id" value
- * @method scan_data   setSongName()       Sets the current record's "song_name" value
- * @method scan_data   setArtistName()     Sets the current record's "artist_name" value
- * @method scan_data   setAlbum()          Sets the current record's "album" value
- * @method scan_data   setCountry()        Sets the current record's "country" value
- * @method scan_data   setGenre()          Sets the current record's "genre" value
- * @method scan_data   setPictureFile()    Sets the current record's "picture_file" value
- * @method scan_data   setYoutubeLink()    Sets the current record's "youtube_link" value
- * @method scan_data   setRecordCompany()  Sets the current record's "record_company" value
- * @method scan_data   setCopyright()      Sets the current record's "copyright" value
- * @method scan_data   setReleaseDate()    Sets the current record's "release_date" value
- * @method scan_data   setProcessed()      Sets the current record's "processed" value
- * @method scan_data   setScanSource()     Sets the current record's "scan_source" value
+ * @method integer             getId()             Returns the current record's "id" value
+ * @method integer             getScanSourceId()   Returns the current record's "scan_source_id" value
+ * @method nvarchar            getSongName()       Returns the current record's "song_name" value
+ * @method nvarchar            getArtistName()     Returns the current record's "artist_name" value
+ * @method nvarchar            getAlbum()          Returns the current record's "album" value
+ * @method nvarchar            getCountry()        Returns the current record's "country" value
+ * @method nvarchar            getGenre()          Returns the current record's "genre" value
+ * @method varchar             getPictureFile()    Returns the current record's "picture_file" value
+ * @method varchar             getYoutubeLink()    Returns the current record's "youtube_link" value
+ * @method nvarchar            getRecordCompany()  Returns the current record's "record_company" value
+ * @method nvarchar            getCopyright()      Returns the current record's "copyright" value
+ * @method nvarchar            getReleaseDate()    Returns the current record's "release_date" value
+ * @method boolean             getProcessed()      Returns the current record's "processed" value
+ * @method scan_source         getScanSource()     Returns the current record's "scan_source" value
+ * @method Doctrine_Collection getScanSong()       Returns the current record's "scan_song" collection
+ * @method scan_data           setId()             Sets the current record's "id" value
+ * @method scan_data           setScanSourceId()   Sets the current record's "scan_source_id" value
+ * @method scan_data           setSongName()       Sets the current record's "song_name" value
+ * @method scan_data           setArtistName()     Sets the current record's "artist_name" value
+ * @method scan_data           setAlbum()          Sets the current record's "album" value
+ * @method scan_data           setCountry()        Sets the current record's "country" value
+ * @method scan_data           setGenre()          Sets the current record's "genre" value
+ * @method scan_data           setPictureFile()    Sets the current record's "picture_file" value
+ * @method scan_data           setYoutubeLink()    Sets the current record's "youtube_link" value
+ * @method scan_data           setRecordCompany()  Sets the current record's "record_company" value
+ * @method scan_data           setCopyright()      Sets the current record's "copyright" value
+ * @method scan_data           setReleaseDate()    Sets the current record's "release_date" value
+ * @method scan_data           setProcessed()      Sets the current record's "processed" value
+ * @method scan_data           setScanSource()     Sets the current record's "scan_source" value
+ * @method scan_data           setScanSong()       Sets the current record's "scan_song" collection
  * 
  * @package    RSSMonitor
  * @subpackage model
@@ -76,51 +79,61 @@ abstract class Basescan_data extends sfDoctrineRecord
              ));
         $this->hasColumn('song_name', 'nvarchar', 1000, array(
              'type' => 'nvarchar',
+             'size' => 1000,
              'notnull' => false,
              'length' => 1000,
              ));
         $this->hasColumn('artist_name', 'nvarchar', 1000, array(
              'type' => 'nvarchar',
+             'size' => 1000,
              'notnull' => false,
              'length' => 1000,
              ));
         $this->hasColumn('album', 'nvarchar', 300, array(
              'type' => 'nvarchar',
+             'size' => 300,
              'notnull' => false,
              'length' => 300,
              ));
         $this->hasColumn('country', 'nvarchar', 100, array(
              'type' => 'nvarchar',
+             'size' => 100,
              'notnull' => false,
              'length' => 100,
              ));
         $this->hasColumn('genre', 'nvarchar', 300, array(
              'type' => 'nvarchar',
+             'size' => 300,
              'notnull' => false,
              'length' => 300,
              ));
         $this->hasColumn('picture_file', 'varchar', 300, array(
              'type' => 'varchar',
+             'size' => 300,
              'notnull' => false,
              'length' => 300,
              ));
         $this->hasColumn('youtube_link', 'varchar', 1000, array(
              'type' => 'varchar',
+             'size' => 1000,
              'notnull' => false,
              'length' => 1000,
              ));
         $this->hasColumn('record_company', 'nvarchar', 300, array(
              'type' => 'nvarchar',
+             'size' => 300,
              'notnull' => false,
              'length' => 300,
              ));
         $this->hasColumn('copyright', 'nvarchar', 500, array(
              'type' => 'nvarchar',
+             'size' => 500,
              'notnull' => false,
              'length' => 500,
              ));
         $this->hasColumn('release_date', 'nvarchar', 100, array(
              'type' => 'nvarchar',
+             'size' => 100,
              'notnull' => false,
              'length' => 100,
              ));
@@ -139,8 +152,20 @@ abstract class Basescan_data extends sfDoctrineRecord
              'onDelete' => 'SET NULL',
              'onUpdate' => 'CASCADE'));
 
+        $this->hasMany('scan_song', array(
+             'local' => 'id',
+             'foreign' => 'scan_data_id'));
+
         $timestampable0 = new Doctrine_Template_Timestampable(array(
-             'created' => NULL,
+             'created' => 
+             array(
+              'name' => 'created_at',
+              'type' => 'timestamp',
+              'options' => 
+              array(
+              'notnull' => false,
+              ),
+             ),
              'updated' => 
              array(
               'disabled' => true,

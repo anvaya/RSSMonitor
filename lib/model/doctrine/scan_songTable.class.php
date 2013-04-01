@@ -16,4 +16,89 @@ class scan_songTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('scan_song');
     }
+    
+    /**
+     * Returns a list of memory choices from the asset record for autocomplete.
+     * @param string $col   Name of the column to search
+     * @param string $match Matching string
+     * @param int    $limit How many records to fetch 
+     * @return array Returns array filled with memory items, blank array if no items found.
+    */
+    public function getListForAjax($col,$match="", $limit=5)
+    {     
+        if($col=='all')
+        {
+            return $this->getListForAjaxSearchAll($match, $limit);
+        }
+        
+        $q = Doctrine_Manager::getInstance()->getConnection("doctrine");
+        $i = 0;
+        
+                   
+        $sql = "select top $limit * from (select s.$col as col from rss_scan_song as s where s.$col like ".$q->quote($match."%")." group by s.$col) as q1 order by q1.col";
+
+        $results = $q->execute($sql, array("$match%") )->fetchAll(Doctrine_Core::FETCH_ASSOC);
+
+        $out = array();
+        foreach($results as $row)
+        {        
+            if($i==$limit) break;
+            $out[$row['col']] = $row['col'];
+            $i++;                
+        }            
+
+        if($i<$limit)
+        {
+            $sql = "select top $limit * from (select s.$col as col from rss_scan_song as s where s.$col like ".$q->quote("%".$match."%")." group by s.$col) as q1 order by q1.col";
+            $results = $q->execute($sql, array("%$match%") )->fetchAll(Doctrine_Core::FETCH_ASSOC);
+
+            foreach($results as $row)
+            {        
+               if($i==$limit) break;
+               $out[$row['col']] = $row['col'];
+               $i++;                
+            }
+        }            
+
+       
+        return $out;    
+    }
+    
+    public function getListForAjaxSearchAll($match, $limit)            
+    {
+        $col_array = array("artist_name","song_name");
+        $conn      = Doctrine_Manager::getInstance()->getConnection("doctrine");//getCurrentConnection();
+        $i         = 0;
+        
+        $out = array();
+        
+        /* @var $conn Doctrine_Connection_Mssql */
+        foreach($col_array as $col)
+        {
+            $sql = "select top $limit * from (select s.$col as col from rss_scan_song as s where s.$col like ".$conn->quote($match."%")." group by s.$col) as q1 order by q1.col";
+                        
+            $results = $conn->execute($sql, array("$match%") )->fetchAll(Doctrine_Core::FETCH_ASSOC);                    
+            
+            foreach($results as $row)
+            {        
+                if($i==$limit) break;
+                $out[$row['col']] = $row['col'];
+                $i++;                
+            }            
+            
+            if($i<$limit)
+            {
+                $sql = "select top $limit * from (select s.$col as col from rss_scan_song as s where s.$col like ".$conn->quote("%".$match."%")." group by s.$col) as q1 order by q1.col";                   
+                $results = $conn->execute($sql, array("%$match%") )->fetchAll(Doctrine_Core::FETCH_ASSOC);
+                foreach($results as $row)
+                {        
+                   if($i==$limit) break;
+                   $out[$row['col']] = $row['col'];
+                   $i++;                
+                }
+            }   
+        }
+        
+        return $out;
+    }
 }

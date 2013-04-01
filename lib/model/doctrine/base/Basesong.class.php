@@ -87,16 +87,19 @@ abstract class Basesong extends sfDoctrineRecord
              ));
         $this->hasColumn('original_file_path', 'varchar', 500, array(
              'type' => 'varchar',
+             'size' => 500,
              'notnull' => false,
              'length' => 500,
              ));
         $this->hasColumn('updated_file_path', 'varchar', 500, array(
              'type' => 'varchar',
+             'size' => 500,
              'notnull' => false,
              'length' => 500,
              ));
         $this->hasColumn('file_name', 'nvarchar', 200, array(
              'type' => 'nvarchar',
+             'size' => 200,
              'notnull' => false,
              'length' => 200,
              ));
@@ -107,6 +110,7 @@ abstract class Basesong extends sfDoctrineRecord
              ));
         $this->hasColumn('quality', 'varchar', 50, array(
              'type' => 'varchar',
+             'size' => 50,
              'notnull' => false,
              'length' => 50,
              ));
@@ -117,46 +121,55 @@ abstract class Basesong extends sfDoctrineRecord
              ));
         $this->hasColumn('song_name', 'varchar', 100, array(
              'type' => 'varchar',
+             'size' => 100,
              'notnull' => false,
              'length' => 100,
              ));
         $this->hasColumn('artist_name', 'varchar', 100, array(
              'type' => 'varchar',
+             'size' => 100,
              'notnull' => false,
              'length' => 100,
              ));
         $this->hasColumn('album', 'nvarchar', 300, array(
              'type' => 'nvarchar',
+             'size' => 300,
              'notnull' => false,
              'length' => 300,
              ));
         $this->hasColumn('writer', 'nvarchar', 300, array(
              'type' => 'nvarchar',
+             'size' => 300,
              'notnull' => false,
              'length' => 300,
              ));
         $this->hasColumn('composer', 'nvarchar', 300, array(
              'type' => 'nvarchar',
+             'size' => 300,
              'notnull' => false,
              'length' => 300,
              ));
         $this->hasColumn('record_company', 'nvarchar', 300, array(
              'type' => 'nvarchar',
+             'size' => 300,
              'notnull' => false,
              'length' => 300,
              ));
         $this->hasColumn('youtube_link_auto', 'varchar', 255, array(
              'type' => 'varchar',
+             'size' => 255,
              'notnull' => false,
              'length' => 255,
              ));
         $this->hasColumn('youtube_link_manual', 'varchar', 255, array(
              'type' => 'varchar',
+             'size' => 255,
              'notnull' => false,
              'length' => 255,
              ));
         $this->hasColumn('artist_picture', 'varchar', 50, array(
              'type' => 'varchar',
+             'size' => 50,
              'notnull' => false,
              'length' => 50,
              ));
@@ -177,6 +190,7 @@ abstract class Basesong extends sfDoctrineRecord
              ));
         $this->hasColumn('copyright_id', 'varchar', 255, array(
              'type' => 'varchar',
+             'size' => 255,
              'notnull' => false,
              'length' => 255,
              ));

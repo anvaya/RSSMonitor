@@ -2,39 +2,43 @@ source_type:
   connection: doctrine
   columns:
     id: { type: integer, size: 4, autoincrement: true, notnull: true, primary: true }
-    type_name: { type: nvarchar(100), notnull: true, unique: true }
-    processor_class: { type: varchar(60), notnull: false }    
+    type_name: { type: nvarchar, size: 100, notnull: true, unique: true }
+    processor_class: { type: varchar, size: 60, notnull: false }    
     disabled: { type: boolean, notnull: true }
     
 scan_source:
   connection: doctrine
   columns:
     id: { type: integer, size: 4, autoincrement: true, notnull: true, primary: true }
-    source_name: { type: nvarchar(100), notnull: true, unique: true }
+    source_name: { type: nvarchar, size: 100, notnull: true, unique: true }
     source_type_id: {  type: integer, size: 4, notnull: false }
-    url: { type: nvarchar(1000), notnull: false }
+    url: { type: nvarchar, size: 1000, notnull: false }
     disabled: { type: boolean, notnull: true }
 
 scan_data:  
   actAs: 
     Timestampable:
-      created: ~
+      created: 
+        name: created_at
+        type: timestamp
+        options:
+          notnull: false
       updated:
         disabled: true
   connection: doctrine
   columns:
     id: { type: integer, size: 5, autoincrement: true, notnull: true, primary: true }
     scan_source_id: { type: integer, size: 4, notnull: false }
-    song_name: { type: nvarchar(1000), notnull: false  }
-    artist_name: { type: nvarchar(1000), notnull: false }
-    album: { type: nvarchar(300), notnull: false }
-    country: { type: nvarchar(100), notnull: false }
-    genre: { type: nvarchar(300), notnull: false }
-    picture_file: { type: varchar(300), notnull: false }
-    youtube_link: { type: varchar(1000), notnull: false }
-    record_company: { type: nvarchar(300), notnull: false }
-    copyright: { type: nvarchar(500), notnull: false }
-    release_date: { type: nvarchar(100), notnull: false }
+    song_name: { type: nvarchar, size: 1000, notnull: false  }
+    artist_name: { type: nvarchar, size: 1000, notnull: false }
+    album: { type: nvarchar, size: 300, notnull: false }
+    country: { type: nvarchar, size: 100, notnull: false }
+    genre: { type: nvarchar, size: 300, notnull: false }
+    picture_file: { type: varchar, size: 300, notnull: false }
+    youtube_link: { type: varchar, size: 1000, notnull: false }
+    record_company: { type: nvarchar, size: 300, notnull: false }
+    copyright: { type: nvarchar, size: 500, notnull: false }
+    release_date: { type: nvarchar, size: 100, notnull: false }
     processed: { type: boolean, notnull: false }
   relations:
     scan_source: { local: scan_source_id, onDelete: SET NULL, onUpdate: CASCADE }
@@ -42,23 +46,27 @@ scan_data:
 playlist_data:
   actAs: 
     Timestampable:
-      created: ~
+      created: 
+        name:            created_at
+        type:            timestamp
+        options:
+          notnull: false
       updated:
         disabled: true  
   connection: doctrine
   columns:
     id: { type: integer, size: 5, autoincrement: true, notnull: true, primary: true }
     scan_source_id: { type: integer, size: 4, notnull: false }
-    song_name: { type: nvarchar(1000), notnull: false  }
-    artist_name: { type: nvarchar(1000), notnull: false }
-    album: { type: nvarchar(300), notnull: false }
-    country: { type: nvarchar(100), notnull: false }
-    genre: { type: nvarchar(300), notnull: false }
-    picture_file: { type: varchar(300), notnull: false }
-    youtube_link: { type: varchar(1000), notnull: false }
-    record_company: { type: nvarchar(300), notnull: false }
-    copyright: { type: nvarchar(500), notnull: false }
-    release_date: { type: nvarchar(100), notnull: false }
+    song_name: { type: nvarchar, size: 1000, notnull: false  }
+    artist_name: { type: nvarchar, size: 1000, notnull: false }
+    album: { type: nvarchar, size: 300, notnull: false }
+    country: { type: nvarchar, size: 100, notnull: false }
+    genre: { type: nvarchar, size: 300, notnull: false }
+    picture_file: { type: varchar, size: 300, notnull: false }
+    youtube_link: { type: varchar, size: 1000, notnull: false }
+    record_company: { type: nvarchar, size: 300, notnull: false }
+    copyright: { type: nvarchar, size: 500, notnull: false }
+    release_date: { type: nvarchar, size: 100, notnull: false }
     processed: { type: boolean, notnull: false }
   relations:
     scan_source: { local: scan_source_id, onDelete: SET NULL, onUpdate: CASCADE }
@@ -68,26 +76,26 @@ scan_song:
   connection: doctrine
   columns:
     id: { type: integer, size: 5, autoincrement: true, notnull: true, primary: true }    
-    rss_data_id: { type: integer, size: 5, notnull: false }
+    scan_data_id: { type: integer, size: 5, notnull: false }
     playlist_data_id: { type: integer, size: 5, notnull: false }
-    song_name: { type: nvarchar(1000), notnull: false  }
-    artist_name: { type: nvarchar(1000), notnull: false }
-    album: { type: nvarchar(300), notnull: false }
-    country: { type: nvarchar(100), notnull: false }
-    genre: { type: nvarchar(300), notnull: false }
-    picture_file: { type: varchar(300), notnull: false }
-    youtube_link: { type: varchar(1000), notnull: false }
-    record_company: { type: nvarchar(300), notnull: false }
-    copyright: { type: nvarchar(500), notnull: false }
-    release_date: { type: nvarchar(100), notnull: false }
-    audio_file_url: { type: nvarchar(1000), notnull: false }
-    audio_file: { type: varchar(200), notnull: false }
+    song_name: { type: nvarchar, size: 1000, notnull: false  }
+    artist_name: { type: nvarchar, size: 1000, notnull: false }
+    album: { type: nvarchar, size: 300, notnull: false }
+    country: { type: nvarchar, size: 100, notnull: false }
+    genre: { type: nvarchar, size: 300, notnull: false }
+    picture_file: { type: varchar, size: 300, notnull: false }
+    youtube_link: { type: varchar, size: 1000, notnull: false }
+    record_company: { type: nvarchar, size: 300, notnull: false }
+    copyright: { type: nvarchar, size: 500, notnull: false }
+    release_date: { type: nvarchar, size: 100, notnull: false }
+    audio_file_url: { type: nvarchar, size: 1000, notnull: false }
+    audio_file: { type: varchar, size: 200, notnull: false }
     alredy_exists: { type: boolean, notnull: false }
     added_to_system: { type: boolean, notnull: false }    
     system_added_date: { type: timestamp, notnull: false }
     track_id: { type: integer, size: 5, notnull: false }
   relations:
-    rss_data: { local: rss_data_id, onDelete: SET NULL, onUpdate: CASCADE }
+    scan_data: { local: scan_data_id, onDelete: SET NULL, onUpdate: CASCADE }
     playlist_data: { local: playlist_data_id, onDelete: SET NULL, onUpdate: CASCADE }
 
 song:
@@ -97,33 +105,33 @@ song:
   connection: SngCMS
   columns:
     id: { type: integer, unsigned: true, autoincrement: true, primary: true, notnull: true }
-    original_file_path: { type: varchar(500), notnull: false  }
-    updated_file_path: { type: varchar(500), notnull: false  }
-    file_name: { type: nvarchar(200), notnull: false }
+    original_file_path: { type: varchar, size: 500, notnull: false  }
+    updated_file_path: { type: varchar, size: 500, notnull: false  }
+    file_name: { type: nvarchar, size: 200, notnull: false }
     file_type_id: { type: tinyint, unsigned: true, notnull: false }
-    quality: { type: varchar(50), notnull: false }
+    quality: { type: varchar, size: 50, notnull: false }
     year: { type: smallint, unsigned: true, notnull: false }
-    song_name: { type: varchar(100), notnull: false }
-    artist_name: { type: varchar(100), notnull: false }
-    album: { type: nvarchar(300), notnull: false }
-    writer: { type: nvarchar(300), notnull: false }
-    composer: { type: nvarchar(300), notnull: false } 
-    record_company: { type: nvarchar(300), notnull: false }
-    youtube_link_auto: { type: varchar(255), notnull: false}
-    youtube_link_manual: { type: varchar(255), notnull: false }    
-    artist_picture: { type: varchar(50), notnull: false }
+    song_name: { type: varchar, size: 100, notnull: false }
+    artist_name: { type: varchar, size: 100, notnull: false }
+    album: { type: nvarchar, size: 300, notnull: false }
+    writer: { type: nvarchar, size: 300, notnull: false }
+    composer: { type: nvarchar, size: 300, notnull: false } 
+    record_company: { type: nvarchar, size: 300, notnull: false }
+    youtube_link_auto: { type: varchar, size: 255, notnull: false}
+    youtube_link_manual: { type: varchar, size: 255, notnull: false }    
+    artist_picture: { type: varchar, size: 50, notnull: false }
     genre_id: { type: smallint, unsigned: true, notnull: false }
     country: { type: varchar(6), notnull: false }
     master_id: { type: integer, unsigned: true, notnull: false }    
-    copyright_id: { type: varchar(255), notnull: false }
+    copyright_id: { type: varchar, size: 255, notnull: false }
     
 setting:
   connection: doctrine
   columns:
-    setting_key: { type: varchar(50), notnull: true, primary: true }    
-    value1: { type: varchar(200), notnull: false }
-    value2: { type: varchar(200), notnull: false }
-    value3: { type: varchar(200), notnull: false }
+    setting_key: { type: varchar, size: 50, notnull: true, primary: true }    
+    value1: { type: varchar, size: 200, notnull: false }
+    value2: { type: varchar, size: 200, notnull: false }
+    value3: { type: varchar, size: 200, notnull: false }
   
     
     

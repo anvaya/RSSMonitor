@@ -40,12 +40,14 @@ abstract class Basesource_type extends sfDoctrineRecord
              ));
         $this->hasColumn('type_name', 'nvarchar', 100, array(
              'type' => 'nvarchar',
+             'size' => 100,
              'notnull' => true,
              'unique' => true,
              'length' => 100,
              ));
         $this->hasColumn('processor_class', 'varchar', 60, array(
              'type' => 'varchar',
+             'size' => 60,
              'notnull' => false,
              'length' => 60,
              ));

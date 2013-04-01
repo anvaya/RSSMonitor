@@ -33,21 +33,25 @@ abstract class Basesetting extends sfDoctrineRecord
         $this->setTableName('setting');
         $this->hasColumn('setting_key', 'varchar', 50, array(
              'type' => 'varchar',
+             'size' => 50,
              'primary' => true,
              'length' => 50,
              ));
         $this->hasColumn('value1', 'varchar', 200, array(
              'type' => 'varchar',
+             'size' => 200,
              'notnull' => false,
              'length' => 200,
              ));
         $this->hasColumn('value2', 'varchar', 200, array(
              'type' => 'varchar',
+             'size' => 200,
              'notnull' => false,
              'length' => 200,
              ));
         $this->hasColumn('value3', 'varchar', 200, array(
              'type' => 'varchar',
+             'size' => 200,
              'notnull' => false,
              'length' => 200,
              ));

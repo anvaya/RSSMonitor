@@ -28,7 +28,7 @@ abstract class Basescan_dataForm extends BaseFormDoctrine
       'copyright'      => new sfWidgetFormInputText(),
       'release_date'   => new sfWidgetFormInputText(),
       'processed'      => new sfWidgetFormInputCheckbox(),
-      ''               => new sfWidgetFormInputText(),
+      'created_at'     => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
@@ -45,7 +45,7 @@ abstract class Basescan_dataForm extends BaseFormDoctrine
       'copyright'      => new sfValidatorPass(array('required' => false)),
       'release_date'   => new sfValidatorPass(array('required' => false)),
       'processed'      => new sfValidatorBoolean(array('required' => false)),
-      ''               => new sfValidatorPass(array('required' => false)),
+      'created_at'     => new sfValidatorDateTime(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('scan_data[%s]');

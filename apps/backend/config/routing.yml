@@ -1,3 +1,21 @@
+setting:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                setting
+    module:               setting
+    prefix_path:          /setting
+    column:               setting_key
+    with_wildcard_routes: true
+
+scan_song:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                scan_song
+    module:               scan_song
+    prefix_path:          /scan_song
+    column:               id
+    with_wildcard_routes: true
+
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 

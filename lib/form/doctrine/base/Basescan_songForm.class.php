@@ -16,7 +16,7 @@ abstract class Basescan_songForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                => new sfWidgetFormInputHidden(),
-      'rss_data_id'       => new sfWidgetFormInputText(),
+      'scan_data_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('scan_data'), 'add_empty' => true)),
       'playlist_data_id'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('playlist_data'), 'add_empty' => true)),
       'song_name'         => new sfWidgetFormInputText(),
       'artist_name'       => new sfWidgetFormInputText(),
@@ -40,7 +40,7 @@ abstract class Basescan_songForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'                => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'rss_data_id'       => new sfValidatorInteger(array('required' => false)),
+      'scan_data_id'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('scan_data'), 'required' => false)),
       'playlist_data_id'  => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('playlist_data'), 'required' => false)),
       'song_name'         => new sfValidatorPass(array('required' => false)),
       'artist_name'       => new sfValidatorPass(array('required' => false)),

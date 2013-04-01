@@ -1,0 +1,41 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           scan_song
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          scan_song
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  
+        track_id:
+          label: Track Id
+        date_added:
+          date_format: dd/MM/yyyy HH:mm
+      list:    
+        title: New Songs List
+        sort: [ song_name asc ]
+        display: [ song_name, artist_name, already_exists, added_to_system, date_added ]
+        object_actions:
+          play:
+            action: Play
+            params:
+              popup: ["Play","width=400,height=400,scrollbars=1"]
+          add_to_system:
+            label: Add To System
+            action: add2System            
+          delete_file:
+            label: Delete File
+            action: deleteFile
+        actions: [ ]    
+      filter:  
+        display: [ source_id, song_name, artist_name, album, country, genre, alredy_exists, added_to_system, track_id, _scripts ]          
+      form:    ~
+      edit:    ~
+      new:     ~

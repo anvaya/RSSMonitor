@@ -79,51 +79,61 @@ abstract class Baseplaylist_data extends sfDoctrineRecord
              ));
         $this->hasColumn('song_name', 'nvarchar', 1000, array(
              'type' => 'nvarchar',
+             'size' => 1000,
              'notnull' => false,
              'length' => 1000,
              ));
         $this->hasColumn('artist_name', 'nvarchar', 1000, array(
              'type' => 'nvarchar',
+             'size' => 1000,
              'notnull' => false,
              'length' => 1000,
              ));
         $this->hasColumn('album', 'nvarchar', 300, array(
              'type' => 'nvarchar',
+             'size' => 300,
              'notnull' => false,
              'length' => 300,
              ));
         $this->hasColumn('country', 'nvarchar', 100, array(
              'type' => 'nvarchar',
+             'size' => 100,
              'notnull' => false,
              'length' => 100,
              ));
         $this->hasColumn('genre', 'nvarchar', 300, array(
              'type' => 'nvarchar',
+             'size' => 300,
              'notnull' => false,
              'length' => 300,
              ));
         $this->hasColumn('picture_file', 'varchar', 300, array(
              'type' => 'varchar',
+             'size' => 300,
              'notnull' => false,
              'length' => 300,
              ));
         $this->hasColumn('youtube_link', 'varchar', 1000, array(
              'type' => 'varchar',
+             'size' => 1000,
              'notnull' => false,
              'length' => 1000,
              ));
         $this->hasColumn('record_company', 'nvarchar', 300, array(
              'type' => 'nvarchar',
+             'size' => 300,
              'notnull' => false,
              'length' => 300,
              ));
         $this->hasColumn('copyright', 'nvarchar', 500, array(
              'type' => 'nvarchar',
+             'size' => 500,
              'notnull' => false,
              'length' => 500,
              ));
         $this->hasColumn('release_date', 'nvarchar', 100, array(
              'type' => 'nvarchar',
+             'size' => 100,
              'notnull' => false,
              'length' => 100,
              ));
@@ -147,7 +157,15 @@ abstract class Baseplaylist_data extends sfDoctrineRecord
              'foreign' => 'playlist_data_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
-             'created' => NULL,
+             'created' => 
+             array(
+              'name' => 'created_at',
+              'type' => 'timestamp',
+              'options' => 
+              array(
+              'notnull' => false,
+              ),
+             ),
              'updated' => 
              array(
               'disabled' => true,

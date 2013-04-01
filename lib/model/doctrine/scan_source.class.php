@@ -12,5 +12,11 @@
  */
 class scan_source extends Basescan_source
 {
-
+    public function __toString() 
+    {
+        if(($source_name=$this->getSourceName()))
+                return $source_name;
+        
+        return '';
+    }
 }

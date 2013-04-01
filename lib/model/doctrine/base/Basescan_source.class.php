@@ -49,6 +49,7 @@ abstract class Basescan_source extends sfDoctrineRecord
              ));
         $this->hasColumn('source_name', 'nvarchar', 100, array(
              'type' => 'nvarchar',
+             'size' => 100,
              'notnull' => true,
              'unique' => true,
              'length' => 100,
@@ -61,6 +62,7 @@ abstract class Basescan_source extends sfDoctrineRecord
              ));
         $this->hasColumn('url', 'nvarchar', 1000, array(
              'type' => 'nvarchar',
+             'size' => 1000,
              'notnull' => false,
              'length' => 1000,
              ));

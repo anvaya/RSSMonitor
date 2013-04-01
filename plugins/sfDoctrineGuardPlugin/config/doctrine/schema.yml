@@ -1,4 +1,5 @@
 sfGuardGroup:
+  connection: doctrine
   actAs: [Timestampable]
   columns:
     name:
@@ -20,6 +21,7 @@ sfGuardGroup:
       foreignAlias: Groups
 
 sfGuardPermission:
+  connection: doctrine
   actAs: [Timestampable]
   columns:
     name:
@@ -28,6 +30,7 @@ sfGuardPermission:
     description: string(1000)
 
 sfGuardGroupPermission:
+  connection: doctrine
   options:
     symfony:
       form:   false
@@ -51,6 +54,7 @@ sfGuardGroupPermission:
       onDelete: CASCADE
 
 sfGuardUser:
+  connection: doctrine
   actAs: [Timestampable]
   columns:
     first_name: string(255)
@@ -95,6 +99,7 @@ sfGuardUser:
       foreignAlias: Users
 
 sfGuardUserPermission:
+  connection: doctrine
   options:
     symfony:
       form:   false
@@ -118,6 +123,7 @@ sfGuardUserPermission:
       onDelete: CASCADE
 
 sfGuardUserGroup:
+  connection: doctrine
   options:
     symfony:
       form:   false
@@ -141,6 +147,7 @@ sfGuardUserGroup:
       onDelete: CASCADE
 
 sfGuardRememberKey:
+  connection: doctrine
   options:
     symfony:
       form:   false
@@ -159,6 +166,7 @@ sfGuardRememberKey:
       onDelete: CASCADE
 
 sfGuardForgotPassword:
+  connection: doctrine
   options:
     symfony:
       form:   false
